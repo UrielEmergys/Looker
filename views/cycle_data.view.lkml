@@ -6,7 +6,7 @@ view: cycle_data {
       I.longitude AS init_y,
       F.latitude AS fin_x,
       F.longitude AS fin_y,
-      SQRT(POW(F.longitude-I.longitude,2)+POW(F.latitude-I.latitude,2)) AS distance_traveled
+      SQRT(POW(F.longitude-I.longitude,2)+POW(F.latitude-I.latitude,2)) AS distance_btwn_stn
 
       FROM `Bicycle_GPS_Demo.cycle_hire` H
 
@@ -23,23 +23,30 @@ view: cycle_data {
     sql: ${TABLE}.rental_id ;;
   }
 
-  dimension: init_x {
+  dimension: init_point {
+    type: location
+    sql_latitude: ${TABLE}.init_x ;;
+    sql_longitude: ${TABLE}.init_y ;;
+  }
+
+  dimension: end_point {
+    type: location
+    sql_latitude: ${TABLE}.fin_x ;;
+    sql_longitude: ${TABLE}.fin_y ;;
+  }
+
+  dimension:  distance_btwn_stn {
     type: number
-    sql:  ${TABLE}.init_x ;;
+    sql: ${TABLE}.distance_btwn_stn ;;
   }
 
-  dimension: init_y {
-    type:  number
-    sql:  ${TABLE}.init_y ;;
+  measure: AVG {
+    type: average
+    ##drill_fields: []
   }
 
-  dimension: fin_x {
-    type: number
-    sql: ${TABLE}.fin_x ;;
-  }
+  measure: SUM{
+    type: sum
 
-  dimension:  fin_y {
-    type:  number
-    sql:  ${TABLE}.fin_y ;;
   }
 }
