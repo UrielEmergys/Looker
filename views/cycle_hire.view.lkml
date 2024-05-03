@@ -62,11 +62,11 @@ view: cycle_hire {
     type: string
     sql: ${TABLE}.start_station_name ;;
   }
-  measure: count {
+  measure: count_hired {
     type: count
     drill_fields: [start_station_name, end_station_name]
   }
-  measure: average {
+  measure: average_duration {
     type: average
     sql:  ${duration} ;;
   }
