@@ -19,6 +19,15 @@ view: cycle_hire {
     description: "Duration of the bike trip in milliseconds."
     sql: ${TABLE}.duration_ms ;;
   }
+  dimension: duration_min {
+    type:  number
+    sql: ${duration}/60 ;;
+  }
+  dimension: duration_hrs {
+    type:  number
+    sql:  ${duration_min}/60 ;;
+  }
+
   dimension_group: end {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -66,8 +75,8 @@ view: cycle_hire {
     type: count
     drill_fields: [start_station_name, end_station_name]
   }
-  measure: average_duration {
+  measure: average_duration_min {
     type: average
-    sql:  ${duration} ;;
+    sql:  ${duration_min} ;;
   }
 }
