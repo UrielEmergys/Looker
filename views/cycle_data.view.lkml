@@ -40,13 +40,13 @@ view: cycle_data {
     sql: ${TABLE}.distance_btwn_stn ;;
   }
 
-  measure: AVG {
+  measure: Avg_traveled_distance {
     type: average
-    ##drill_fields: []
+    sql: ${distance_btwn_stn} ;;
   }
 
-  measure: SUM{
+  measure: Sum_avg_traveled_distance{
     type: sum
-
+    sql: ${distance_btwn_stn} ;;
   }
 }

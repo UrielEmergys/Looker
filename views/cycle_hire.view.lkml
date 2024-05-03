@@ -68,6 +68,6 @@ view: cycle_hire {
   }
   measure: average {
     type: average
-
+    sql:  ${duration} ;;
   }
 }
