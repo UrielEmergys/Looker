@@ -42,6 +42,7 @@ view: cycle_hire {
   }
   dimension: rental_id {
     type: number
+    primary_key: yes
     sql: ${TABLE}.rental_id ;;
   }
   dimension_group: start {
@@ -64,5 +65,9 @@ view: cycle_hire {
   measure: count {
     type: count
     drill_fields: [start_station_name, end_station_name]
+  }
+  measure: average {
+    type: average
+
   }
 }
