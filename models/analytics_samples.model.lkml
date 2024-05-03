@@ -10,7 +10,11 @@ datagroup: analytics_samples_default_datagroup {
 
 persist_with: analytics_samples_default_datagroup
 
-explore: cycle_hire {}
-
-explore: cycle_stations {}
-
+explore: cycle_hire {
+  join:  cycle_stations {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${cycle_hire.start_station_id} = ${cycle_stations.id} OR
+      ${cycle_hire.end_station_id = ${cycle_stations.id}};;
+  }
+}
