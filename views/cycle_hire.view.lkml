@@ -79,4 +79,8 @@ view: cycle_hire {
     type: average
     sql:  ${duration_min} ;;
   }
+  measure: sum_duration_min {
+    type:  sum
+    sql:  ${duration_min} ;;
+  }
 }
